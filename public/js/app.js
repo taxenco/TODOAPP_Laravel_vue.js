@@ -2020,7 +2020,6 @@ __webpack_require__.r(__webpack_exports__);
       this.tasks = object.taskList;
     },
     prevPage: function prevPage(object) {
-      console.log('aaaa');
       this.page = object.page;
     },
     nextPage: function nextPage(object) {

@@ -47,7 +47,6 @@ export default {
             this.tasks = object.taskList;
         },
         prevPage(object) {
-            console.log('aaaa');
             this.page = object.page;
         },
         nextPage(object) {
