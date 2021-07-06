@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    props: ['deleteToggle', 'updateToggle', 'newRecordAdded'],
+    props: ['deleteToggle', 'updateToggle', 'newRecordAdded', 'page'],
     data() {
         return {
             todoList: [],
@@ -27,9 +27,13 @@ export default {
     methods: {
         getData() {
             let vm = this;
-            axios.get('/api/todo')
+            let page = typeof this.page === 'undefined' ? 1 : this.page;
+            axios.get(`/api/todo?page=${page}`)
                 .then(function (response) {
-                    vm.todoList = response.data;
+                    vm.todoList = response.data.data;
+                    vm.$emit('taskList', {
+                        taskList: response.data
+                    })
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -62,7 +66,9 @@ export default {
         },
         newRecordAdded(val) {
             this.getData();
-
+        },
+        page(val) {
+            this.getData();
         }
     }
 };

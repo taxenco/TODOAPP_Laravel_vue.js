@@ -28,6 +28,7 @@ Vue.component('deleteModal-component', require('./components/DeleteModal.vue').d
 Vue.component('updateModal-component', require('./components/UpdateModal.vue').default);
 Vue.component('table-component', require('./components/Table.vue').default);
 Vue.component('form-component', require('./components/Form.vue').default);
+Vue.component('pagination-component', require('./components/Pagination.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

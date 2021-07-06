@@ -15,7 +15,7 @@ class TodoController extends Controller
     public function index(Request $request)
     {
 
-        $taks = Todo::latest()->get();
+        $taks = Todo::latest()->Paginate(3);
        
         return response()->json($taks , 200);
     }
