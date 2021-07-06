@@ -19,17 +19,6 @@ class TodoController extends Controller
        
         return response()->json($taks , 200);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -55,28 +44,6 @@ class TodoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Todo  $todo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Todo $todo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Todo  $todo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Todo $todo)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -85,7 +52,16 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
+       $id = $request['params']['id'];
+       $newTask = $request['params']['newTask'];
+
+        $updateTask = Todo::find($id);
+        $updateTask->task = $newTask;
+        $updateTask->save();
        
+       return response()->json([
+        'create' => 'update successfully',
+        ], 200);
     }
 
     /**
@@ -96,8 +72,6 @@ class TodoController extends Controller
      */
     public function destroy( Request $request, Todo $todo)
     {
-        
-
         $task =  Todo::find($request->id);
         $task->completed = 1;
         $task->save();
